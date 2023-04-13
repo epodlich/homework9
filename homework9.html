@@ -398,12 +398,12 @@ av2 = av0 %&gt;% gather(key = time, value = return, c(12, 14, 16, 18, 20)) %&gt;
   mutate(time = parse_number(time))
 View(av2)
 
-av.neat = left_join(av1, av2, by = c(&quot;Name.Alias&quot;, &quot;time&quot;))</code></pre>
+death = left_join(av1, av2, by = c(&quot;Name.Alias&quot;, &quot;time&quot;))</code></pre>
 <pre><code>## Warning in left_join(av1, av2, by = c(&quot;Name.Alias&quot;, &quot;time&quot;)): Each row in `x` is expected to match at most 1 row in `y`.
 ## ℹ Row 29 of `x` matches multiple rows.
 ## ℹ If multiple matches are expected, set `multiple = &quot;all&quot;` to silence this
 ##   warning.</code></pre>
-<pre class="r"><code>View(av.neat)</code></pre>
+<pre class="r"><code>View(death)</code></pre>
 <pre class="r"><code>av0 = av0 %&gt;% filter(Name.Alias != &quot;Vance Astrovik&quot;)
 av1 = av0 %&gt;% gather(key = time, value = death, c(11, 13, 15, 17, 19)) %&gt;%
   select(Name.Alias, time, death) %&gt;%
@@ -423,6 +423,17 @@ av.neat %&gt;% filter(time == 1, death == &quot;YES&quot;) %&gt;%
 </div>
 <div id="part-two-validation" class="section level2">
 <h2>Part Two: Validation</h2>
+<div id="emma" class="section level3">
+<h3>Emma</h3>
+<p>Statement Validation from FiveThirtyEight:</p>
+<p>“I counted 89 total deaths — some unlucky Avengers7 are basically
+Meat Loaf with an E-ZPass — and on 57 occasions the individual made a
+comeback.”</p>
+<pre class="r"><code>death %&gt;% filter(death == &quot;YES&quot; | return == &quot;YES&quot;) %&gt;% summarise(total_death = sum(death == &quot;YES&quot;), comeback = sum(return == &quot;YES&quot;))</code></pre>
+<pre><code>##   total_death comeback
+## 1          82       55</code></pre>
+<pre class="r"><code># The FiveThirtyEight statement said that there were 89 total deaths and 57 of them made comebacks. When we analyzed our data set, we found that there where 82 total deaths and 55 of them made comebacks. This is slightly off from the FiveThirtyEight statement but the values are quite close so there may have just been some kind of counting error. Or, we are using slightly different data sets.</code></pre>
+</div>
 </div>
 
 

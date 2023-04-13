@@ -37,8 +37,8 @@ av2 = av0 %>% gather(key = time, value = return, c(12, 14, 16, 18, 20)) %>%
   mutate(time = parse_number(time))
 View(av2)
 
-av.neat = left_join(av1, av2, by = c("Name.Alias", "time"))
-View(av.neat)
+death = left_join(av1, av2, by = c("Name.Alias", "time"))
+View(death)
 ```
 
 ```{r}
@@ -61,3 +61,16 @@ av.neat %>% filter(time == 1, death == "YES") %>%
 
 
 ## Part Two: Validation
+
+### Emma
+
+Statement Validation from FiveThirtyEight:
+
+"I counted 89 total deaths — some unlucky Avengers7 are basically Meat Loaf with an E-ZPass — and on 57 occasions the individual made a comeback."
+
+```{r}
+death %>% filter(death == "YES" | return == "YES") %>% summarise(total_death = sum(death == "YES"), comeback = sum(return == "YES"))
+
+# The FiveThirtyEight statement said that there were 89 total deaths and 57 of them made comebacks. When we analyzed our data set, we found that there where 82 total deaths and 55 of them made comebacks. This is slightly off from the FiveThirtyEight statement but the values are quite close so there may have just been some kind of counting error. Or, we are using slightly different data sets.
+```
+
