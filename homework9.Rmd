@@ -1,6 +1,6 @@
 ---
 title: "Homework 9"
-author: "Emma"
+author: "Emma and Ryan"
 date: "2023-04-12"
 output: html_document
 ---
@@ -72,5 +72,16 @@ Statement Validation from FiveThirtyEight:
 death %>% filter(death == "YES" | return == "YES") %>% summarise(total_death = sum(death == "YES"), comeback = sum(return == "YES"))
 
 # The FiveThirtyEight statement said that there were 89 total deaths and 57 of them made comebacks. When we analyzed our data set, we found that there where 82 total deaths and 55 of them made comebacks. This is slightly off from the FiveThirtyEight statement but the values are quite close so there may have just been some kind of counting error. Or, we are using slightly different data sets.
+```
+### Ryan
+
+Statement validation from FiveThirtyEight:
+
+"Out of 173 listed Avengers, my analysis found that 69 had died at least one time after they joined the team."
+
+```{r}
+av %>% filter(Death1 == "YES") %>% summarise(Total_Avenger_Deaths = sum(Death1 == "YES"))
+
+"The statement said out of the 173 avengers at least 69 of them died once. This data proves that this statement is true as there were indeed 69 different avenger deaths at least one time in the FiveThirtyEight data set."
 ```
 
