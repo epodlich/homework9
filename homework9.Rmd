@@ -82,6 +82,6 @@ Statement validation from FiveThirtyEight:
 ```{r}
 av %>% filter(Death1 == "YES") %>% summarise(Total_Avenger_Deaths = sum(Death1 == "YES"))
 
-"The statement said out of the 173 avengers at least 69 of them died once. This data proves that this statement is true as there were indeed 69 different avenger deaths at least one time in the FiveThirtyEight data set."
+#The statement said out of the 173 avengers at least 69 of them died once. This data proves that this statement is true as there were indeed 69 different avenger deaths at least one time in the FiveThirtyEight data set."
 ```
 
